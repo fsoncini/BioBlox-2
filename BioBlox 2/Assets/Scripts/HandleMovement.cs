@@ -9,8 +9,7 @@ public class HandleMovement : MonoBehaviour {
 	
     void Start()
     {
-     
-        player = GameObject.Find("Brick"); //TODO
+        player = GameObject.FindGameObjectWithTag("brick"); //TODO
     }
 
 
@@ -18,7 +17,6 @@ public class HandleMovement : MonoBehaviour {
 	//adding deltatime makes movement independent of frame rate
     void Update () {
 
-        Instantiate(player);
 
         if (Input.GetKey ("up")) {
             player.transform.Translate(0, velocity * Time.deltaTime, 0); 
@@ -35,10 +33,13 @@ public class HandleMovement : MonoBehaviour {
         {
             player.transform.Translate(-velocity * Time.deltaTime, 0, 0);
         }
-
-        
+      
     }
 
-    
-        
+    //void OnCollisionEnter2D(Collision2D collision)
+    //{
+    //    //Instantiate(player);
+    //}
+
+
 }
