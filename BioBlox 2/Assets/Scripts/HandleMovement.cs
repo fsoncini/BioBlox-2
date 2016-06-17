@@ -10,6 +10,7 @@ public class HandleMovement : MonoBehaviour {
     void Start()
     {
         player = GameObject.FindGameObjectWithTag("brick"); //TODO
+        //Destroy(player, 10);
     }
 
 
