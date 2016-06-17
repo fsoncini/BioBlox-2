@@ -409,7 +409,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   balls:
-  - {fileID: 159708, guid: 385a812e68dd18249bb41f855d4f659a, type: 2}
+  - {fileID: 0}
+  - {fileID: 0}
   natural_length: []
   spring_constant: 100
   damping_constant: 0
