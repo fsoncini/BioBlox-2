@@ -1,4 +1,0 @@
-sceneSetups:
-- path: Assets/_Scenes/Level01.unity
-  isLoaded: 1
-  isActive: 1
