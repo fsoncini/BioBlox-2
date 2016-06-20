@@ -13,7 +13,14 @@ public class blobscript : MonoBehaviour {
 
         // move the blob towards the mouse.
         Rigidbody2D rb = GetComponent<Rigidbody2D>();
-        float spring_constant = 100;
-        rb.AddForce(new Vector2(delta.x * spring_constant, delta.y * spring_constant));
+       // float spring_constant = 1;
+       // rb.AddForce(new Vector2(delta.x * spring_constant, delta.y * spring_constant));
+
+        transform.position = mouse_pos;
+    }
+
+    void OnMouseDown() {
+
+        transform.Rotate(0,0,45);
     }
 }

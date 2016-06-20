@@ -3,12 +3,14 @@ using System.Collections;
 
 public class Spawner : MonoBehaviour {
 
-    public GameObject spawn;
+    public GameObject brick;
     public GameObject blob;
+    GameObject Ribosome;
 
 	// Use this for initialization
 	void Start () {
-        
+
+        Ribosome = GameObject.FindGameObjectWithTag("Ribo");
     }
 
     // Update is called once per frame
@@ -16,12 +18,12 @@ public class Spawner : MonoBehaviour {
     {
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            Instantiate(spawn, transform.position, Quaternion.identity);
+            Instantiate(brick, Ribosome.transform.position, Quaternion.identity);
         }
 
         if (Input.GetKeyDown(KeyCode.Return))
         {
-            Instantiate(blob, transform.position, Quaternion.identity);
+            Instantiate(blob, Ribosome.transform.position, Quaternion.identity);
         }
     }
     }
