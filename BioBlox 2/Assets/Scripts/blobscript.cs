@@ -1,10 +1,14 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 public class blobscript : MonoBehaviour {
 
     //private bool isBall;
     //private bool isBrick;
+
+    //private GameObject s = GameObject.Find("springs");
+    //private GameObject docked;
 
     void OnMouseDrag() {
         // calculate the mouse position in world space.
@@ -18,38 +22,35 @@ public class blobscript : MonoBehaviour {
 
         // move the blob towards the mouse.
         Rigidbody2D rb = GetComponent<Rigidbody2D>();
-        float spring_constant = 100;
+        float spring_constant = 50;
         rb.AddForce(new Vector2(delta.x * spring_constant, delta.y * spring_constant));
     }
 
 
-    //void OnCollisionEnter2D()
-    //{
-    //    if(isBall)
-    //    {
-    //        Debug.Log("BALL COLLISION DETECTED");
-    //    }
-
-    //    if (isBrick)
-    //    {
-    //        Debug.Log("BRICK COLLISION DETECTED");
-    //    }
-
-    //}
-
-
-    void OnCircleCollisionEnter2D()
+    void OnCollisionEnter2D(Collision2D coll)
     {
-   
-            Debug.Log("BALL COLLISION DETECTED");
-    
-    }
+        //if (isBall)
+        //{
+        //    Debug.Log("BALL COLLISION DETECTED");
+        //}
 
-    void OnBoxCollisionEnter2D()
-    {
-        
-            Debug.Log("BRICK COLLISION DETECTED");
-        
+        //if (isBrick)
+        //{
+        //    Debug.Log("BRICK COLLISION DETECTED");
+        //}
+
+        if (coll.gameObject.tag == "brick")
+        {
+            Debug.Log("Docking Collision Detected");
+            //makes clones children of Docks object
+            GameObject.FindGameObjectWithTag("ball").transform.parent = GameObject.Find("Docks").transform;
+
+
+            //tried to access List<> balls directly (unsuccesfully)
+            //docked = GameObject.FindGameObjectWithTag("ball");
+            //s.GetComponent<List<GameObject>>().Add(docked);   
+        }
+
     }
 
 }
