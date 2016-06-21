@@ -37,12 +37,12 @@ public class blobscript : MonoBehaviour {
        // rb.AddForce(new Vector2(delta.x * spring_constant, delta.y * spring_constant));
 
         transform.position = mouse_pos;
-        transform.rotation = Quaternion.identity; //Check this
+        //transform.rotation = Quaternion.identity; //Check this
     }
 
     void OnMouseDown() {
 
-        //transform.Rotate(0,0,45); //Improve this
+        transform.Rotate(0,0,15); //Improve this
     }
 
     void OnCollisionEnter2D(Collision2D coll) {
@@ -50,16 +50,11 @@ public class blobscript : MonoBehaviour {
         if (coll.gameObject.name != "BottomWall" && coll.gameObject.name != "LeftWall" && !collided)
         {
 
-            //natLength = (coll.transform.position - this.transform.position).magnitude;
-
             springScript.balls.Add(thisItem);
             collided = true;
 
-            //for (int i = 0; i < _Spawner.numSpawnItems - 1; ++i)
-            //{
-            //    springScript.natural_length.Add(natLength); //Modify this (not precise)
-            //}
 
+            //Calculate the relative distances between objects
             springScript.natural_length.Clear();
 
             for (int i = 0; i < springScript.balls.Count; ++i)
@@ -73,14 +68,6 @@ public class blobscript : MonoBehaviour {
                 }
             }
 
-            //OtherBlob = coll.gameObject.GetComponent<blobscript>();
-            //if (!OtherBlob.collided)
-            //{
-            //    springScript.balls.Add(coll.gameObject);
-            //    springScript.natural_length.Add(natLength); //Modify this (not precise)
-            //    OtherBlob.collided = true;
-
-            //} 
         }
     }
 }
