@@ -522,7 +522,7 @@ GameObject:
   - 114: {fileID: 713644842}
   m_Layer: 0
   m_Name: springs
-  m_TagString: Untagged
+  m_TagString: spring
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -539,9 +539,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   balls: []
-  natural_length: []
+  natural_length:
+  - 0.3
   spring_constant: 100
-  damping_constant: 0
+  damping_constant: 100
 --- !u!4 &713644843
 Transform:
   m_ObjectHideFlags: 0
