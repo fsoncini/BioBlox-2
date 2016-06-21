@@ -4,11 +4,11 @@ using System.Collections.Generic;
 
 public class blobscript : MonoBehaviour {
 
-   private bool isBall = true;
-    //private bool isBrick;
+    Spawner s;
 
     //private GameObject s = GameObject.Find("springs");
-  
+
+   private int collisions; //keeps track of number of collisions
 
     void OnMouseDrag() {
         // calculate the mouse position in world space.
@@ -29,27 +29,23 @@ public class blobscript : MonoBehaviour {
 
     void OnCollisionEnter2D(Collision2D coll)
     {
-
-        this.gameObject.tag = "ball";
-        //if (isBall)
-        //{
-        //    //Debug.Log("BALL COLLISION DETECTED");
-        //}
-
-        //if (isBrick)
-        //{
-        //    Debug.Log("BRICK COLLISION DETECTED");
-        //}
-
-        if (coll.gameObject.tag == "ball" && isBall)
+        s = GameObject.Find("Spawner").GetComponent<Spawner>();
+       
+        //this.gameObject.tag = "ball";
+        collisions++;
+  
+        if (coll.gameObject.tag == "ball" && collisions < 2) //&& !s.collided)
         {
-            isBall = false;
+            //s.collided = true;
             Debug.Log("Docking Collision Detected");
             //makes clones children of Docks object
             GameObject.FindGameObjectWithTag("ball").transform.parent = GameObject.Find("Docks").transform;
             this.transform.parent = GameObject.Find("Docks").transform;
-            GameObject.Find("Docks").GetComponent<Docks>().CountChildren();    
+            GameObject.Find("Docks").GetComponent<Docks>().CountChildren();
+            gameObject.layer = 0;
+            
         }
+
 
         //if (coll.gameObject.tag == "brick")
         //{
