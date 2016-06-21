@@ -539,8 +539,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   balls: []
-  natural_length:
-  - 0.3
+  natural_length: []
   spring_constant: 100
   damping_constant: 100
 --- !u!4 &713644843
@@ -608,7 +607,7 @@ GameObject:
   - 114: {fileID: 900116926}
   m_Layer: 0
   m_Name: Spawner
-  m_TagString: Untagged
+  m_TagString: spawner
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -626,6 +625,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   brick: {fileID: 152522, guid: f3f25e3f33b13684d991a6e054161a53, type: 2}
   blob: {fileID: 159708, guid: 385a812e68dd18249bb41f855d4f659a, type: 2}
+  numSpawnItems: 0
 --- !u!4 &900116927
 Transform:
   m_ObjectHideFlags: 0

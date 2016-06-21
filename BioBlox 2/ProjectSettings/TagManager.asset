@@ -7,6 +7,7 @@ TagManager:
   - brick
   - Ribo
   - spring
+  - spawner
   layers:
   - Default
   - TransparentFX
