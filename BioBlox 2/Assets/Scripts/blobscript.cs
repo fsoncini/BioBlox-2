@@ -4,11 +4,11 @@ using System.Collections.Generic;
 
 public class blobscript : MonoBehaviour {
 
-    //private bool isBall;
+   private bool isBall = true;
     //private bool isBrick;
 
     //private GameObject s = GameObject.Find("springs");
-    //private GameObject docked;
+  
 
     void OnMouseDrag() {
         // calculate the mouse position in world space.
@@ -29,9 +29,11 @@ public class blobscript : MonoBehaviour {
 
     void OnCollisionEnter2D(Collision2D coll)
     {
+
+        this.gameObject.tag = "ball";
         //if (isBall)
         //{
-        //    Debug.Log("BALL COLLISION DETECTED");
+        //    //Debug.Log("BALL COLLISION DETECTED");
         //}
 
         //if (isBrick)
@@ -39,18 +41,24 @@ public class blobscript : MonoBehaviour {
         //    Debug.Log("BRICK COLLISION DETECTED");
         //}
 
-        if (coll.gameObject.tag == "brick")
+        if (coll.gameObject.tag == "ball" && isBall)
         {
+            isBall = false;
             Debug.Log("Docking Collision Detected");
             //makes clones children of Docks object
             GameObject.FindGameObjectWithTag("ball").transform.parent = GameObject.Find("Docks").transform;
-
-
-            //tried to access List<> balls directly (unsuccesfully)
-            //docked = GameObject.FindGameObjectWithTag("ball");
-            //s.GetComponent<List<GameObject>>().Add(docked);   
+            this.transform.parent = GameObject.Find("Docks").transform;
+            GameObject.Find("Docks").GetComponent<Docks>().CountChildren();    
         }
 
+        //if (coll.gameObject.tag == "brick")
+        //{
+        //    Debug.Log("Docking Collision Detected");
+        //    //makes clones children of Docks object
+        //    GameObject.FindGameObjectWithTag("ball").transform.parent = GameObject.Find("Docks").transform;
+        //    GameObject.Find("Docks").GetComponent<Docks>().CountChildren();
+        //}
+        
     }
-
+    
 }

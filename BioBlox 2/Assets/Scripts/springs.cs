@@ -8,7 +8,13 @@ public class springs : MonoBehaviour {
     public float spring_constant;
     public float damping_constant;
 
+    Docks docks_script;
+
     void Start() {
+        docks_script = GameObject.Find("Docks").GetComponent<Docks>();
+        balls = docks_script.docks;
+
+
         //establishing relationship between one ball and all the others
         for (int i = 0; i < balls.Count; ++i) {
             for (int j = i+1; j < balls.Count; ++j) {
@@ -19,6 +25,8 @@ public class springs : MonoBehaviour {
             }
         }
     }
+
+
 
     //good link to brush up on vector operations
     //http://www.3dgep.com/3d-math-primer-for-game-programmers-vector-operations
