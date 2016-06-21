@@ -8,14 +8,14 @@ public class blobscript : MonoBehaviour {
     Spawner _Spawner;
     public bool collided;
 
-    float natLength;
+    //float natLength;
 
     GameObject thisItem;
 
     void Start() {
 
         collided = false;
-        natLength = 0.3f;
+        //natLength = 0.3f;
 
         thisItem = this.gameObject;
         springScript = GameObject.FindGameObjectWithTag("spring").GetComponent<springs>();
@@ -50,14 +50,27 @@ public class blobscript : MonoBehaviour {
         if (coll.gameObject.name != "BottomWall" && coll.gameObject.name != "LeftWall" && !collided)
         {
 
-            natLength = (coll.transform.position - this.transform.position).magnitude;
+            //natLength = (coll.transform.position - this.transform.position).magnitude;
 
             springScript.balls.Add(thisItem);
             collided = true;
 
-            for (int i = 0; i < _Spawner.numSpawnItems - 1; ++i)
+            //for (int i = 0; i < _Spawner.numSpawnItems - 1; ++i)
+            //{
+            //    springScript.natural_length.Add(natLength); //Modify this (not precise)
+            //}
+
+            springScript.natural_length.Clear();
+
+            for (int i = 0; i < springScript.balls.Count; ++i)
             {
-                springScript.natural_length.Add(natLength); //Modify this (not precise)
+                for (int j = i + 1; j < springScript.balls.Count; ++j)
+                {
+                    Rigidbody2D rb1 = springScript.balls[i].GetComponent<Rigidbody2D>();
+                    Rigidbody2D rb2 = springScript.balls[j].GetComponent<Rigidbody2D>();
+                    float d = (rb1.transform.position - rb2.transform.position).magnitude;
+                    springScript.natural_length.Add(d);
+                }
             }
 
             //OtherBlob = coll.gameObject.GetComponent<blobscript>();
