@@ -3,7 +3,7 @@ using System.Collections;
 
 public class Spawner : MonoBehaviour {
 
-    public GameObject spawn;
+    public GameObject brick;
     public GameObject blob;
 
     blobscript b;
@@ -20,7 +20,10 @@ public class Spawner : MonoBehaviour {
     {
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            Instantiate(spawn, transform.position, Quaternion.identity);
+            Instantiate(brick, transform.position, Quaternion.identity);
+            b = GameObject.Find("Brick(Clone)").GetComponent<blobscript>();
+            b.gameObject.layer = 2;
+
         }
 
         if (Input.GetKeyDown(KeyCode.Return))

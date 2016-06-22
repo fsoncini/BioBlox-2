@@ -15,15 +15,15 @@ public class springs : MonoBehaviour {
         balls = docks_script.docks;
         natural_length = docks_script.nl;
 
-        //establishing relationship between one ball and all the others
-        for (int i = 0; i < balls.Count; ++i) {
-            for (int j = i+1; j < balls.Count; ++j) {
-                Rigidbody2D rb1 = balls[i].GetComponent<Rigidbody2D>();
-                Rigidbody2D rb2 = balls[j].GetComponent<Rigidbody2D>();
-                float d = (rb1.transform.position - rb2.transform.position).magnitude;
-                natural_length.Add(d);
-            }
-        }
+        ////establishing relationship between one ball and all the others
+        //for (int i = 0; i < balls.Count; ++i) {
+        //    for (int j = i+1; j < balls.Count; ++j) {
+        //        Rigidbody2D rb1 = balls[i].GetComponent<Rigidbody2D>();
+        //        Rigidbody2D rb2 = balls[j].GetComponent<Rigidbody2D>();
+        //        float d = (rb1.transform.position - rb2.transform.position).magnitude;
+        //        natural_length.Add(d);
+        //    }
+        //}
     }
 
 
