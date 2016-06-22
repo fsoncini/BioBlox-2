@@ -10,6 +10,7 @@ public class blobscript : MonoBehaviour {
 
     GameObject thisItem;
     GameObject ProteinStruct;
+    
 
     void Start() {
 
@@ -18,7 +19,23 @@ public class blobscript : MonoBehaviour {
         springScript = GameObject.FindGameObjectWithTag("spring").GetComponent<springs>();
         _Spawner = GameObject.FindGameObjectWithTag("spawner").GetComponent<Spawner>();
         ProteinStruct = GameObject.FindGameObjectWithTag("Struct");
+       
 
+    }
+
+    void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Delete)) {
+
+            springScript.natural_length.Clear();
+            springScript.balls.Clear();
+            _Spawner.ChainLength = 1;
+            collided = false;
+
+            Destroy(thisItem);
+            _Spawner.numSpawnItems = 0;
+
+        }
     }
 
     void OnMouseDrag() {
@@ -40,15 +57,16 @@ public class blobscript : MonoBehaviour {
 
     void OnMouseDown() {
 
-        //transform.Rotate(0,0,15); //Improve this
+        while (true) { transform.Rotate(0, 0, 15); } //Improve this
     }
 
     void OnCollisionEnter2D(Collision2D coll) {
 
-        if (coll.gameObject.name != "BottomWall" && coll.gameObject.name != "LeftWall" && !collided && (coll.transform.parent == ProteinStruct.transform || _Spawner.numSpawnItems <= 2))
+        if (coll.gameObject.name != "BottomWall" && coll.gameObject.name != "LeftWall" && !collided && (coll.transform.parent == ProteinStruct.transform || _Spawner.ChainLength <= 2))
         {
 
             springScript.balls.Add(thisItem);
+            _Spawner.ChainLength++;
             thisItem.transform.parent = ProteinStruct.transform;
             collided = true;
 

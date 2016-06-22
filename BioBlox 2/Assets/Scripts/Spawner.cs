@@ -6,6 +6,7 @@ public class Spawner : MonoBehaviour {
     public GameObject brick;
     public GameObject blob;
     GameObject Ribosome;
+    public int ChainLength;
 
     public int numSpawnItems;
 
@@ -13,6 +14,7 @@ public class Spawner : MonoBehaviour {
 	void Start () {
 
         Ribosome = GameObject.FindGameObjectWithTag("Ribo");
+        ChainLength = 1;
         numSpawnItems = 0;
     }
 
