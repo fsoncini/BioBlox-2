@@ -64,7 +64,7 @@ public class blobscript : MonoBehaviour {
 
     void OnMouseDown() {
 
-        //transform.Rotate(0, 0, 15); //Improve this
+        
     }
 
     void OnMouseOver() {
@@ -78,7 +78,7 @@ public class blobscript : MonoBehaviour {
 
     void OnCollisionEnter2D(Collision2D coll) {
 
-        if (coll.gameObject.name != "BottomWall" && coll.gameObject.name != "LeftWall" && !collided && (coll.transform.parent == ProteinStruct.transform || _Spawner.ChainLength <= 2))
+        if (coll.gameObject.name != "BottomWall" && coll.gameObject.name != "LeftWall" && coll.gameObject.name != "RightWall" && !collided && (coll.transform.parent == ProteinStruct.transform || _Spawner.ChainLength <= 2))
         {
 
             springScript.balls.Add(thisItem);
@@ -99,7 +99,6 @@ public class blobscript : MonoBehaviour {
                     springScript.natural_length.Add(d);
                 }
             }
-
         }
     }
 }
