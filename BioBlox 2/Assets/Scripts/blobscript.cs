@@ -48,6 +48,7 @@ public class blobscript : MonoBehaviour {
 
             //makes clones children of Docks object
        
+            
             GameObject.Find("Brick(Clone)").transform.parent = GameObject.Find("Docks").transform;
             this.transform.parent = GameObject.Find("Docks").transform;
 
@@ -58,12 +59,7 @@ public class blobscript : MonoBehaviour {
             gameObject.layer = 0;
 
         }
-
-
-
-
-
-
+        
     }
 
 }

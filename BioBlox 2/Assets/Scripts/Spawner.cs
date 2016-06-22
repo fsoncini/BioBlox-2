@@ -5,6 +5,7 @@ public class Spawner : MonoBehaviour {
 
     public GameObject brick;
     public GameObject blob;
+    public GameObject docks;
 
     blobscript b;
 
@@ -36,5 +37,12 @@ public class Spawner : MonoBehaviour {
 
     
         }
+  
     }
+
+    public void CreateNewDocks ()
+    {
+        Instantiate(docks, transform.position, Quaternion.identity);
+    }
+
     }

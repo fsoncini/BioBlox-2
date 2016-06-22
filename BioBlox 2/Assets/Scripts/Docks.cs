@@ -7,6 +7,8 @@ public class Docks : MonoBehaviour {
     public List<GameObject> docks;
     public List<float> nl;
 
+    Spawner sp;
+
     public void CountChildren ()
     {
         //flush elements from list before reading
@@ -16,9 +18,19 @@ public class Docks : MonoBehaviour {
         foreach (Transform child in transform)
         {
             Debug.Log("Foreach loop: " + child);
-            docks.Add(child.gameObject);
-        }
+            if (docks.Count < 4)
+            {
+                docks.Add(child.gameObject);
+            }
 
+            else
+            {
+                sp = GameObject.Find("Spawner").GetComponent<Spawner>();
+                sp.CreateNewDocks(); 
+            }
+        }
+        
+        //establishing relationship between one item and all the others
         for (int i = 0; i < docks.Count; ++i)
         {
             for (int j = i + 1; j < docks.Count; ++j)
