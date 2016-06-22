@@ -8,6 +8,7 @@ TagManager:
   - Ribo
   - spring
   - spawner
+  - Struct
   layers:
   - Default
   - TransparentFX

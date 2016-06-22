@@ -8,18 +8,16 @@ public class blobscript : MonoBehaviour {
     Spawner _Spawner;
     public bool collided;
 
-    //float natLength;
-
     GameObject thisItem;
+    GameObject ProteinStruct;
 
     void Start() {
 
         collided = false;
-        //natLength = 0.3f;
-
         thisItem = this.gameObject;
         springScript = GameObject.FindGameObjectWithTag("spring").GetComponent<springs>();
         _Spawner = GameObject.FindGameObjectWithTag("spawner").GetComponent<Spawner>();
+        ProteinStruct = GameObject.FindGameObjectWithTag("Struct");
 
     }
 
@@ -42,17 +40,17 @@ public class blobscript : MonoBehaviour {
 
     void OnMouseDown() {
 
-        transform.Rotate(0,0,15); //Improve this
+        //transform.Rotate(0,0,15); //Improve this
     }
 
     void OnCollisionEnter2D(Collision2D coll) {
 
-        if (coll.gameObject.name != "BottomWall" && coll.gameObject.name != "LeftWall" && !collided)
+        if (coll.gameObject.name != "BottomWall" && coll.gameObject.name != "LeftWall" && !collided && (coll.transform.parent == ProteinStruct.transform || _Spawner.numSpawnItems <= 2))
         {
 
             springScript.balls.Add(thisItem);
+            thisItem.transform.parent = ProteinStruct.transform;
             collided = true;
-
 
             //Calculate the relative distances between objects
             springScript.natural_length.Clear();
