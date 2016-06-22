@@ -36,6 +36,13 @@ public class blobscript : MonoBehaviour {
             _Spawner.numSpawnItems = 0;
 
         }
+
+        //if (Input.GetMouseButton(1)) {
+
+        //    transform.Rotate(0, 0, 1);
+        //}
+
+        
     }
 
     void OnMouseDrag() {
@@ -57,7 +64,16 @@ public class blobscript : MonoBehaviour {
 
     void OnMouseDown() {
 
-        while (true) { transform.Rotate(0, 0, 15); } //Improve this
+        //transform.Rotate(0, 0, 15); //Improve this
+    }
+
+    void OnMouseOver() {
+
+        if (Input.GetMouseButton(1) && thisItem.tag != "blob")
+        {
+
+            transform.Rotate(0, 0, 1);
+        }
     }
 
     void OnCollisionEnter2D(Collision2D coll) {

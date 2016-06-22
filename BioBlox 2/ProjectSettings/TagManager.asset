@@ -9,6 +9,7 @@ TagManager:
   - spring
   - spawner
   - Struct
+  - blob
   layers:
   - Default
   - TransparentFX
