@@ -3,12 +3,9 @@ using System.Collections;
 using System.Collections.Generic;
 
 public class blobscript : MonoBehaviour {
+    
+    private bool collided;
 
-    Spawner s;
-
-    //private GameObject s = GameObject.Find("springs");
-
-   private int collisions; //keeps track of number of collisions
 
     void OnMouseDrag() {
         // calculate the mouse position in world space.
@@ -19,41 +16,30 @@ public class blobscript : MonoBehaviour {
         Vector3 delta = mouse_pos - transform.position;
         //isBall = (this.tag == "ball");
         //isBrick = (this.tag == "brick");
-
         // move the blob towards the mouse.
         Rigidbody2D rb = GetComponent<Rigidbody2D>();
         float spring_constant = 50;
         rb.AddForce(new Vector2(delta.x * spring_constant, delta.y * spring_constant));
     }
 
-
     void OnCollisionEnter2D(Collision2D coll)
     {
-        s = GameObject.Find("Spawner").GetComponent<Spawner>();
-       
-        //this.gameObject.tag = "ball";
-        collisions++;
   
-        if (coll.gameObject.tag == "ball" && collisions < 2) //&& !s.collided)
-        {
-            //s.collided = true;
-            Debug.Log("Docking Collision Detected");
-            //makes clones children of Docks object
-            GameObject.FindGameObjectWithTag("ball").transform.parent = GameObject.Find("Docks").transform;
-            this.transform.parent = GameObject.Find("Docks").transform;
-            GameObject.Find("Docks").GetComponent<Docks>().CountChildren();
-            gameObject.layer = 0;
-            
+        if (coll.gameObject.layer == 1  && !collided) 
+        { 
+                Debug.Log("Docking Collision Detected");
+
+                //makes clones children of Docks object
+                GameObject.Find("Blob(Clone)").transform.parent = GameObject.Find("Docks").transform;
+                this.transform.parent = GameObject.Find("Docks").transform;
+
+                //calls CountChildren() function in Docks script
+                GameObject.Find("Docks").GetComponent<Docks>().CountChildren();
+
+                collided = true;
+                gameObject.layer = 0;
+                          
         }
-
-
-        //if (coll.gameObject.tag == "brick")
-        //{
-        //    Debug.Log("Docking Collision Detected");
-        //    //makes clones children of Docks object
-        //    GameObject.FindGameObjectWithTag("ball").transform.parent = GameObject.Find("Docks").transform;
-        //    GameObject.Find("Docks").GetComponent<Docks>().CountChildren();
-        //}
         
     }
     

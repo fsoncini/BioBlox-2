@@ -13,7 +13,7 @@ public class springs : MonoBehaviour {
     void Start() {
         docks_script = GameObject.Find("Docks").GetComponent<Docks>();
         balls = docks_script.docks;
-
+        natural_length = docks_script.nl;
 
         //establishing relationship between one ball and all the others
         for (int i = 0; i < balls.Count; ++i) {

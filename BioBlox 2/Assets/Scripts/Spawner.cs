@@ -6,14 +6,13 @@ public class Spawner : MonoBehaviour {
     public GameObject spawn;
     public GameObject blob;
 
-    //public bool collided = false;
     blobscript b;
 
 
 
 	// Use this for initialization
 	void Start () {
-        b = GameObject.Find("Blob(Clone)").GetComponent<blobscript>();
+        
     }
 
     // Update is called once per frame
@@ -26,12 +25,13 @@ public class Spawner : MonoBehaviour {
 
         if (Input.GetKeyDown(KeyCode.Return))
         {
+            //creates clones Ball object
             Instantiate(blob, transform.position, Quaternion.identity);
-            b.gameObject.layer = 8;
-            
-            //collided = false;
-            //GameObject.FindGameObjectsWithTag("ball").Equals("Blob(Clone)");
-            //collisions = 0;
+
+            b = GameObject.Find("Blob(Clone)").GetComponent<blobscript>();
+            b.gameObject.layer = 1;
+
+    
         }
     }
     }
