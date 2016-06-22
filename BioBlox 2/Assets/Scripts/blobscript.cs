@@ -31,7 +31,6 @@ public class blobscript : MonoBehaviour {
 
             //makes clones children of Docks object
             GameObject.Find("Blob(Clone)").transform.parent = GameObject.Find("Docks").transform;
-         
             this.transform.parent = GameObject.Find("Docks").transform;
 
             //calls CountChildren() function in Docks script

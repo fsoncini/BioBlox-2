@@ -7,6 +7,8 @@ public class Docks : MonoBehaviour {
     public List<GameObject> docks;
     public List<float> nl;
 
+    private bool docks_limit;
+
     Spawner sp;
 
     public void CountChildren ()
@@ -18,15 +20,21 @@ public class Docks : MonoBehaviour {
         foreach (Transform child in transform)
         {
             Debug.Log("Foreach loop: " + child);
-            if (docks.Count < 4)
+            if (docks.Count < 3 && !docks_limit)
+
             {
                 docks.Add(child.gameObject);
             }
 
             else
             {
+                //docks.Clear();
+                //nl.Clear();
+                docks_limit = true;
                 sp = GameObject.Find("Spawner").GetComponent<Spawner>();
-                sp.CreateNewDocks(); 
+                sp.CreateNewDocks();
+                
+                
             }
         }
         

@@ -7,8 +7,9 @@ public class Spawner : MonoBehaviour {
     public GameObject blob;
     public GameObject docks;
 
+    private int dock_counter;
     blobscript b;
-
+    Docks d;
 
 
 	// Use this for initialization
@@ -42,7 +43,11 @@ public class Spawner : MonoBehaviour {
 
     public void CreateNewDocks ()
     {
+        dock_counter++;
         Instantiate(docks, transform.position, Quaternion.identity);
+        d = GameObject.Find("Docks").GetComponent<Docks>();
+        
+        //d.gameObject.tag = "d" + dock_counter;
     }
 
     }
