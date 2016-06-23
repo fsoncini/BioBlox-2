@@ -4,48 +4,53 @@ using System.Collections;
 public class blobscript : MonoBehaviour {
 
     springs springScript;
+    springs springScript2;
+
     blobscript OtherBlob;
     Spawner _Spawner;
     public bool collided;
-
     GameObject thisItem;
-    GameObject ProteinStruct;
-    
 
-    void Start() {
+    GameObject ProteinStruct, ProteinStruct2;
+
+    springs[] SpringArray = new springs[5];
+
+
+    void Start()
+    {
 
         collided = false;
         thisItem = this.gameObject;
         springScript = GameObject.FindGameObjectWithTag("spring").GetComponent<springs>();
+        springScript2 = GameObject.FindGameObjectWithTag("spring2").GetComponent<springs>();
         _Spawner = GameObject.FindGameObjectWithTag("spawner").GetComponent<Spawner>();
         ProteinStruct = GameObject.FindGameObjectWithTag("Struct");
-       
+        ProteinStruct2 = GameObject.FindGameObjectWithTag("Struct2");
 
     }
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Delete)) {
-
+        if (Input.GetKeyDown(KeyCode.Delete))
+        {
             springScript.natural_length.Clear();
+            springScript2.natural_length.Clear();
+
             springScript.balls.Clear();
+            springScript2.balls.Clear();
+
             _Spawner.ChainLength = 1;
+            _Spawner.ChainLength2 = 1;
+
             collided = false;
 
             Destroy(thisItem);
             _Spawner.numSpawnItems = 0;
-
         }
-
-        //if (Input.GetMouseButton(1)) {
-
-        //    transform.Rotate(0, 0, 1);
-        //}
-
-        
     }
 
-    void OnMouseDrag() {
+    void OnMouseDrag()
+    {
         // calculate the mouse position in world space.
         float camera_distance = 10;
         Vector2 mp = Input.mousePosition;
@@ -62,25 +67,75 @@ public class blobscript : MonoBehaviour {
         //transform.rotation = Quaternion.identity; //Check this
     }
 
-    void OnMouseDown() {
+    void OnMouseDown()
+    {
 
         
     }
 
-    void OnMouseOver() {
-
+    void OnMouseOver()
+    {
         if (Input.GetMouseButton(1) && thisItem.tag != "blob")
         {
-
             transform.Rotate(0, 0, 1);
         }
     }
 
-    void OnCollisionEnter2D(Collision2D coll) {
+    //void OnCollisionEnter2D(Collision2D coll) {
+
+    //    if (coll.gameObject.name != "BottomWall" && coll.gameObject.name != "LeftWall" && coll.gameObject.name != "RightWall" && !collided && (coll.transform.parent == ProteinStruct.transform || _Spawner.ChainLength <= 2))
+    //    {
+
+    //        springScript.balls.Add(thisItem);
+    //        _Spawner.ChainLength++;
+    //        thisItem.transform.parent = ProteinStruct.transform;
+    //        collided = true;
+
+    //        //Calculate the relative distances between objects
+    //        springScript.natural_length.Clear();
+
+    //        for (int i = 0; i < springScript.balls.Count; ++i)
+    //        {
+    //            for (int j = i + 1; j < springScript.balls.Count; ++j)
+    //            {
+    //                Rigidbody2D rb1 = springScript.balls[i].GetComponent<Rigidbody2D>();
+    //                Rigidbody2D rb2 = springScript.balls[j].GetComponent<Rigidbody2D>();
+    //                float d = (rb1.transform.position - rb2.transform.position).magnitude;
+    //                springScript.natural_length.Add(d);
+    //            }
+    //        }
+    //    }
+
+    //    else if (coll.gameObject.name != "BottomWall" && coll.gameObject.name != "LeftWall" && coll.gameObject.name != "RightWall" && !collided && (coll.transform.parent == ProteinStruct2.transform || _Spawner.ChainLength2 <= 2))
+    //    {
+
+    //        springScript2.balls.Add(thisItem);
+    //        _Spawner.ChainLength2++;
+    //        thisItem.transform.parent = ProteinStruct2.transform;
+    //        collided = true;
+
+    //        //Calculate the relative distances between objects
+    //        springScript2.natural_length.Clear();
+
+    //        for (int i = 0; i < springScript2.balls.Count; ++i)
+    //        {
+    //            for (int j = i + 1; j < springScript2.balls.Count; ++j)
+    //            {
+    //                Rigidbody2D rb1 = springScript2.balls[i].GetComponent<Rigidbody2D>();
+    //                Rigidbody2D rb2 = springScript2.balls[j].GetComponent<Rigidbody2D>();
+    //                float d = (rb1.transform.position - rb2.transform.position).magnitude;
+    //                springScript2.natural_length.Add(d);
+    //            }
+    //        }
+    //    }
+
+    //}
+
+    void OnCollisionEnter2D(Collision2D coll)
+    {
 
         if (coll.gameObject.name != "BottomWall" && coll.gameObject.name != "LeftWall" && coll.gameObject.name != "RightWall" && !collided && (coll.transform.parent == ProteinStruct.transform || _Spawner.ChainLength <= 2))
         {
-
             springScript.balls.Add(thisItem);
             _Spawner.ChainLength++;
             thisItem.transform.parent = ProteinStruct.transform;
@@ -97,6 +152,34 @@ public class blobscript : MonoBehaviour {
                     Rigidbody2D rb2 = springScript.balls[j].GetComponent<Rigidbody2D>();
                     float d = (rb1.transform.position - rb2.transform.position).magnitude;
                     springScript.natural_length.Add(d);
+                }
+            }
+        }
+
+        else if (/*_Spawner.numProteinStruct < 5 && */coll.gameObject.name != "BottomWall" && coll.gameObject.name != "LeftWall" && coll.gameObject.name != "RightWall" && !collided && (coll.transform.parent != ProteinStruct.transform /*|| _Spawner.ChainLength2 <= 2*/))
+        {
+            OtherBlob = coll.gameObject.GetComponent<blobscript>();
+
+            if (!OtherBlob.collided && _Spawner.numProteinStruct < 5) { _Spawner.Instantiator(_Spawner.numProteinStruct); }
+            collided = true;
+
+            SpringArray[_Spawner.numProteinStruct - 1] = _Spawner.springScriptArray[_Spawner.numProteinStruct - 1].GetComponent<springs>();
+            SpringArray[_Spawner.numProteinStruct - 1].balls.Add(thisItem);
+                       
+            _Spawner.ChainLengthArray[_Spawner.numProteinStruct - 1]++;
+            thisItem.transform.parent = _Spawner.ProteinStructArray[_Spawner.numProteinStruct - 1].transform;
+
+            //Calculate the relative distances between objects
+            SpringArray[_Spawner.numProteinStruct - 1].natural_length.Clear();
+
+            for (int i = 0; i < SpringArray[_Spawner.numProteinStruct - 1].balls.Count; ++i)
+            {
+                for (int j = i + 1; j < SpringArray[_Spawner.numProteinStruct - 1].balls.Count; ++j)
+                {
+                    Rigidbody2D rb1 = SpringArray[_Spawner.numProteinStruct - 1].balls[i].GetComponent<Rigidbody2D>();
+                    Rigidbody2D rb2 = SpringArray[_Spawner.numProteinStruct - 1].balls[j].GetComponent<Rigidbody2D>();
+                    float d = (rb1.transform.position - rb2.transform.position).magnitude;
+                    SpringArray[_Spawner.numProteinStruct - 1].natural_length.Add(d);
                 }
             }
         }

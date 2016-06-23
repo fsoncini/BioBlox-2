@@ -10,6 +10,10 @@ TagManager:
   - spawner
   - Struct
   - blob
+  - spring2
+  - Struct2
+  - struct1
+  - spring1
   layers:
   - Default
   - TransparentFX
