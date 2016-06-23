@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 public class blobscript : MonoBehaviour {
     
-    private bool collided;
+    public bool collided;
 
 
     void OnMouseDrag() {
@@ -25,40 +25,63 @@ public class blobscript : MonoBehaviour {
     void OnCollisionEnter2D(Collision2D coll)
     {
   
-        if (coll.gameObject.layer == 1  && !collided) 
+        if (coll.gameObject.tag == "ball" && !collided) 
         { 
             Debug.Log("Docking Collision Detected");
 
-            //makes clones children of Docks object
-            GameObject.Find("Blob(Clone)").transform.parent = GameObject.Find("Docks").transform;
-            this.transform.parent = GameObject.Find("Docks").transform;
 
+            //trying to find parent with tag instead of name.
+            GameObject.FindGameObjectWithTag("ball").transform.parent = GameObject.FindGameObjectWithTag("dock").transform;
+            this.transform.parent = GameObject.FindGameObjectWithTag("dock").transform;
+            GameObject.FindGameObjectWithTag("dock").GetComponent<Docks>().CountChildren();
+
+
+            //makes clones children of Docks object
+            //GameObject.Find("Blob(Clone)").transform.parent = GameObject.Find("Docks").transform;
+            //this.transform.parent = GameObject.Find("Docks").transform;
             //calls CountChildren() function in Docks script
-            GameObject.Find("Docks").GetComponent<Docks>().CountChildren();
+            //GameObject.Find("Docks").GetComponent<Docks>().CountChildren();
 
             collided = true;
-            gameObject.layer = 0;
+            //gameObject.layer = 0;
                           
         }
 
-        if (coll.gameObject.layer == 2 && !collided)
-        {
-            Debug.Log("Docking Collision Detected");
-
-            //makes clones children of Docks object
-       
+        //if (coll.gameObject.tag == "new" && !collided)
+        //{
+        //    Debug.Log("Docking Collision Detected");
             
-            GameObject.Find("Brick(Clone)").transform.parent = GameObject.Find("Docks").transform;
-            this.transform.parent = GameObject.Find("Docks").transform;
+        //    //trying to find parent with tag instead of name.
+        //    GameObject.FindGameObjectWithTag("new").transform.parent = GameObject.FindGameObjectWithTag("dock").transform;
+        //    this.transform.parent = GameObject.FindGameObjectWithTag("dock").transform;
+        //    GameObject.FindGameObjectWithTag("dock").GetComponent<Docks>().CountChildren();
+            
 
-            //calls CountChildren() function in Docks script
-            GameObject.Find("Docks").GetComponent<Docks>().CountChildren();
+        //    collided = true;
+        //    //gameObject.layer = 0;
 
-            collided = true;
-            gameObject.layer = 0;
+        //}
 
-        }
-        
+
+
+        //if (coll.gameObject.layer == 2 && !collided)
+        //{
+        //    Debug.Log("Docking Collision Detected");
+
+        //    //makes clones children of Docks object
+
+
+        //    GameObject.Find("Brick(Clone)").transform.parent = GameObject.Find("Docks").transform;
+        //    this.transform.parent = GameObject.Find("Docks").transform;
+
+        //    //calls CountChildren() function in Docks script
+        //    GameObject.Find("Docks").GetComponent<Docks>().CountChildren();
+
+        //    collided = true;
+        //    gameObject.layer = 0;
+
+        //}
+
     }
 
 }

@@ -6,15 +6,17 @@ public class Spawner : MonoBehaviour {
     public GameObject brick;
     public GameObject blob;
     public GameObject docks;
+    //public GameObject springs;
 
-    private int dock_counter;
+
     blobscript b;
     Docks d;
-
+    //springs s;
 
 	// Use this for initialization
 	void Start () {
-        
+        Instantiate(docks, transform.position, Quaternion.identity);
+        //Instantiate(springs, transform.position, Quaternion.identity);
     }
 
     // Update is called once per frame
@@ -23,19 +25,22 @@ public class Spawner : MonoBehaviour {
         if (Input.GetKeyDown(KeyCode.Space))
         {
             Instantiate(brick, transform.position, Quaternion.identity);
-            b = GameObject.Find("Brick(Clone)").GetComponent<blobscript>();
-            b.gameObject.layer = 2;
+            
+            //take out layers
+            //b = GameObject.Find("Brick(Clone)").GetComponent<blobscript>();
+            //b.gameObject.layer = 2;
 
         }
 
         if (Input.GetKeyDown(KeyCode.Return))
         {
-            //creates clones Ball object
+            //creates clones of Ball object
             Instantiate(blob, transform.position, Quaternion.identity);
 
-            b = GameObject.Find("Blob(Clone)").GetComponent<blobscript>();
-            b.gameObject.layer = 1;
-
+            //take out layers
+            //b = GameObject.FindGameObjectWithTag("ball").GetComponent<blobscript>();
+            //b.gameObject.layer = 1;
+           // b.collided = false;
     
         }
   
@@ -43,11 +48,25 @@ public class Spawner : MonoBehaviour {
 
     public void CreateNewDocks ()
     {
-        dock_counter++;
+       
+        //Instantiate(springs, transform.position, Quaternion.identity);
+        //s = GameObject.Find("springs(Clone)").GetComponent<springs>();
+
         Instantiate(docks, transform.position, Quaternion.identity);
-        d = GameObject.Find("Docks").GetComponent<Docks>();
-        
+        d = GameObject.FindWithTag("dock").GetComponent<Docks>();
+
+        b.collided = false;
+
+        //d.docks.Clear();
+        //d.nl.Clear();
+
+        //s.balls = d.docks_buffer;
+        //s.natural_length = d.nl;
+
+
+        //d = GameObject.Find("Docks(Clone)").GetComponent<Docks>();
+        //d.gameObject.tag = "dock";
         //d.gameObject.tag = "d" + dock_counter;
     }
 
-    }
+}
