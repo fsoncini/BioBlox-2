@@ -14,6 +14,13 @@ TagManager:
   - Struct2
   - struct1
   - spring1
+  - struct2
+  - struct3
+  - struct4
+  - struct5
+  - spring3
+  - spring4
+  - spring5
   layers:
   - Default
   - TransparentFX
