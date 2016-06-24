@@ -8,6 +8,7 @@ TagManager:
   - ball
   - dock
   - wall
+  - new
   layers:
   - Default
   - TransparentFX

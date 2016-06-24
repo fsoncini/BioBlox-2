@@ -9,8 +9,6 @@ public class Docks : MonoBehaviour
     public List<GameObject> docks_buffer;
     public List<float> nl;
 
-    public float spring_constant;
-    public float damping_constant;
 
     private bool docks_limit;
 
@@ -40,7 +38,7 @@ public class Docks : MonoBehaviour
                     docks_buffer.Add(child.gameObject);
                     //gameObject.tag = "Untagged";
                     docks_limit = true;
-                    CreateObjectBuffer();
+                    //CreateObjectBuffer();
                     //sp.CreateNewDocks();
                 }
             }
@@ -86,28 +84,9 @@ public class Docks : MonoBehaviour
 
     }
 
-    void FixedUpdate()
-    {
-        int nli = 0;
-        for (int i = 0; i < docks.Count; ++i)
-        {
-            for (int j = i + 1; j < docks.Count; ++j)
-            {
-                Rigidbody2D rb1 = docks[i].GetComponent<Rigidbody2D>();
-                Rigidbody2D rb2 = docks[j].GetComponent<Rigidbody2D>();
-                //float deltav = (rb1.velocity - rb2.velocity).magnitude;
-                Vector3 delta = rb1.transform.position - rb2.transform.position; //getting the distance bt two points
-                Vector3 dir = delta.normalized; //getting the direction of the vector
-                float d = delta.magnitude; //getting the length (or norm) or the vector 
-                float f = (d - nl[nli++]) * spring_constant;
-                rb1.AddForce(new Vector2(-f * dir.x, -f * dir.y));
-                rb2.AddForce(new Vector2(f * dir.x, f * dir.y));
-            }
-        }
 
 
-    }
+
+
 
 }
-
-

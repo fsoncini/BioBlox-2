@@ -25,22 +25,22 @@ public class blobscript : MonoBehaviour {
     void OnCollisionEnter2D(Collision2D coll)
     {
   
-        if (coll.gameObject.tag == "ball" && !collided) 
+        if (coll.gameObject.tag != "wall" && !collided) 
         { 
             Debug.Log("Docking Collision Detected");
 
 
             //trying to find parent with tag instead of name.
-            GameObject.FindGameObjectWithTag("ball").transform.parent = GameObject.FindGameObjectWithTag("dock").transform;
+            GameObject.FindGameObjectWithTag("ball").transform.parent = GameObject.Find("dock").transform;
             this.transform.parent = GameObject.FindGameObjectWithTag("dock").transform;
             GameObject.FindGameObjectWithTag("dock").GetComponent<Docks>().CountChildren();
 
 
-            //makes clones children of Docks object
-            //GameObject.Find("Blob(Clone)").transform.parent = GameObject.Find("Docks").transform;
-            //this.transform.parent = GameObject.Find("Docks").transform;
-            //calls CountChildren() function in Docks script
-            //GameObject.Find("Docks").GetComponent<Docks>().CountChildren();
+            ////makes clones children of Docks object
+            //GameObject.Find("Blob(Clone)").transform.parent = GameObject.Find("Docks(Clone)").transform;
+            //this.transform.parent = GameObject.Find("Docks(Clone)").transform;
+            ////calls CountChildren() function in Docks script
+            //GameObject.Find("Docks(Clone)").GetComponent<Docks>().CountChildren();
 
             collided = true;
             //gameObject.layer = 0;
