@@ -25,7 +25,6 @@ public class blobscript : MonoBehaviour {
         NewStructCreated = false;
         thisItem = this.gameObject;
         springScript = GameObject.FindGameObjectWithTag("spring").GetComponent<springs>();
-        springScript2 = GameObject.FindGameObjectWithTag("spring2").GetComponent<springs>();
         _Spawner = GameObject.FindGameObjectWithTag("spawner").GetComponent<Spawner>();
         ProteinStruct = GameObject.FindGameObjectWithTag("Struct");
         ProteinStruct2 = GameObject.FindGameObjectWithTag("Struct2");
