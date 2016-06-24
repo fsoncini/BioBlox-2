@@ -33,6 +33,7 @@ public class blobscript : MonoBehaviour {
 
     void Update()
     {
+        //Change this. Not more relevant
         if (Input.GetKeyDown(KeyCode.Delete))
         {
             springScript.natural_length.Clear();
@@ -110,15 +111,11 @@ public class blobscript : MonoBehaviour {
         }
 
         else if (coll.gameObject.name != "BottomWall" && coll.gameObject.name != "LeftWall" && coll.gameObject.name != "RightWall" && !collided && (coll.transform.parent != ProteinStruct.transform))
-        {
-            
-
+        {           
             if (!OtherBlob.collided && _Spawner.numProteinStruct < 5)
 
             {
-                
                 print("first Loop, Spawner");
-
                 _Spawner.Instantiator(_Spawner.numProteinStruct);
                
 
