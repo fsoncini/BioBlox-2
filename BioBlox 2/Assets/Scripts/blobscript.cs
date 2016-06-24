@@ -33,7 +33,7 @@ public class blobscript : MonoBehaviour {
 
     void Update()
     {
-        //Change this. Not more relevant
+        //Change this. Not more relevant and create errors
         if (Input.GetKeyDown(KeyCode.Delete))
         {
             springScript.natural_length.Clear();
