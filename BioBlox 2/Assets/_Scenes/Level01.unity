@@ -685,6 +685,7 @@ MonoBehaviour:
   ChainLength2: 0
   ChainLengthArray: 0000000000000000000000000000000000000000
   numSpawnItems: 0
+  numProteinStruct: 0
 --- !u!4 &900116927
 Transform:
   m_ObjectHideFlags: 0
@@ -819,7 +820,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1072119052}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 7.82, y: 1.14, z: 0}
+  m_LocalPosition: {x: 7.75, y: 5.71, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -972,7 +973,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1842020549}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.51, y: 0.88, z: 0}
+  m_LocalPosition: {x: 15.03, y: 8.28, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}

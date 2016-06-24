@@ -18,6 +18,7 @@ public class Spawner : MonoBehaviour {
 
     public int numSpawnItems;
     public int numProteinStruct;
+    public ProteinStructData _ProteinStructData;
 
 	// Use this for initialization
 	void Start () {
@@ -56,14 +57,16 @@ public class Spawner : MonoBehaviour {
         if (ProteinStructArray[ProteinNumber] == null && springScriptArray[ProteinNumber] == null)
         {
             
-
             ProteinStructArray[ProteinNumber] = (GameObject)Instantiate(_ProteinStruct, transform.position, Quaternion.identity);
             ProteinStructArray[ProteinNumber].gameObject.tag = "struct" + (ProteinNumber+1);
+            _ProteinStructData = ProteinStructArray[ProteinNumber].gameObject.GetComponent<ProteinStructData>();
+            
 
             springScriptArray[ProteinNumber] = (GameObject)Instantiate(_springs, transform.position, Quaternion.identity); //Double Check this
             springScriptArray[ProteinNumber].gameObject.tag = "spring" + (ProteinNumber+1);
 
             numProteinStruct++;
+            _ProteinStructData.UpdateID(numProteinStruct);
         }
   
       }
