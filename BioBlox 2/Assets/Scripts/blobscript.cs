@@ -88,7 +88,7 @@ public class blobscript : MonoBehaviour {
     {
         OtherBlob = coll.gameObject.GetComponent<blobscript>();
 
-        if (coll.gameObject.name != "BottomWall" && coll.gameObject.name != "LeftWall" && coll.gameObject.name != "RightWall" && !collided && (coll.transform.parent == ProteinStruct.transform || _Spawner.ChainLength <= 2))
+        if (coll.gameObject.name != "wall" && !collided && (coll.transform.parent == ProteinStruct.transform || _Spawner.ChainLength <= 2))
         {
             springScript.balls.Add(thisItem);
             _Spawner.ChainLength++;
@@ -110,7 +110,7 @@ public class blobscript : MonoBehaviour {
             }
         }
 
-        else if (coll.gameObject.name != "BottomWall" && coll.gameObject.name != "LeftWall" && coll.gameObject.name != "RightWall" && !collided && (coll.transform.parent != ProteinStruct.transform))
+        else if (coll.gameObject.name != "wall" && !collided && (coll.transform.parent != ProteinStruct.transform))
         {           
             if (!OtherBlob.collided && _Spawner.numProteinStruct < 5)
 

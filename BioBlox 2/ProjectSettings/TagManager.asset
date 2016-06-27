@@ -21,6 +21,7 @@ TagManager:
   - spring3
   - spring4
   - spring5
+  - wall
   layers:
   - Default
   - TransparentFX
