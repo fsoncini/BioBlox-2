@@ -20,7 +20,7 @@ public class blobscript : MonoBehaviour {
 
     void Start()
     {
-
+        
         collided = false;
         NewStructCreated = false;
         thisItem = this.gameObject;
@@ -34,22 +34,37 @@ public class blobscript : MonoBehaviour {
     void Update()
     {
         //Change this. Not more relevant and create errors
-        if (Input.GetKeyDown(KeyCode.Delete))
+
+        //  if (Input.GetKeyDown(KeyCode.Delete))
+        if (_Spawner.numBricks == 2 && _Spawner.numBlobs == 2 && collided)
         {
             springScript.natural_length.Clear();
-            springScript2.natural_length.Clear();
+           // springScript2.natural_length.Clear();
 
             springScript.balls.Clear();
-            springScript2.balls.Clear();
+           // springScript2.balls.Clear();
 
             _Spawner.ChainLength = 1;
-            _Spawner.ChainLength2 = 1;
+           // _Spawner.ChainLength2 = 1;
 
             collided = false;
 
             Destroy(thisItem);
-            _Spawner.numSpawnItems = 0;
+            _Spawner.UnitsDestroyed++;
+
+            if (_Spawner.UnitsDestroyed == 4)
+            {
+                _Spawner.numBlobs = 0;
+                _Spawner.numBricks = 0;
+                _Spawner.UnitsDestroyed = 0;
+                _Spawner.numSpawnItems = 0;
+
+                print("Protein Completed");
+            }
+              
         }
+
+
     }
 
     void OnMouseDrag()
@@ -91,6 +106,10 @@ public class blobscript : MonoBehaviour {
         if (coll.gameObject.name != "BottomWall" && coll.gameObject.name != "LeftWall" && coll.gameObject.name != "RightWall" && !collided && (coll.transform.parent == ProteinStruct.transform || _Spawner.ChainLength <= 2) && _Spawner.ChainLength <= 4)
         {
             springScript.balls.Add(thisItem);
+
+            if      (thisItem.tag == "brick") { _Spawner.numBricks++; print("Num Bricks: " + _Spawner.numBricks);}
+            else if (thisItem.tag == "blob")  { _Spawner.numBlobs++; print("Num Blobs: " + _Spawner.numBlobs);}
+
             _Spawner.ChainLength++;
             thisItem.transform.parent = ProteinStruct.transform;
             collided = true;

@@ -8,6 +8,10 @@ public class Spawner : MonoBehaviour {
     public GameObject _springs;
     public GameObject _ProteinStruct;
 
+    public int numBricks;
+    public int numBlobs;
+    public int UnitsDestroyed;
+
     public GameObject[] ProteinStructArray = new GameObject[5];
     public GameObject[] springScriptArray = new GameObject[5]; //Maybe declare as gameobject??
 
@@ -27,6 +31,10 @@ public class Spawner : MonoBehaviour {
         ChainLength = 1;
         ChainLength2 = 1;
         numProteinStruct = 0;
+        UnitsDestroyed = 0;
+
+        numBricks = 0;
+        numBlobs = 0;
 
         for (int i = 0; i < 5; ++i)
         {
