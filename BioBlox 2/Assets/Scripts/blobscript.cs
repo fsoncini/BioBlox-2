@@ -88,7 +88,7 @@ public class blobscript : MonoBehaviour {
     {
         OtherBlob = coll.gameObject.GetComponent<blobscript>();
 
-        if (coll.gameObject.name != "BottomWall" && coll.gameObject.name != "LeftWall" && coll.gameObject.name != "RightWall" && !collided && (coll.transform.parent == ProteinStruct.transform || _Spawner.ChainLength <= 2))
+        if (coll.gameObject.name != "BottomWall" && coll.gameObject.name != "LeftWall" && coll.gameObject.name != "RightWall" && !collided && (coll.transform.parent == ProteinStruct.transform || _Spawner.ChainLength <= 2) && _Spawner.ChainLength <= 4)
         {
             springScript.balls.Add(thisItem);
             _Spawner.ChainLength++;
@@ -147,29 +147,33 @@ public class blobscript : MonoBehaviour {
                 
                 ProtStructData = OtherBlob.gameObject.GetComponentInParent<ProteinStructData>();
 
-                print("Second Loop, Attacher, ProtStructID: " + ProtStructData.StructID);
-
-                SpringArray[ProtStructData.StructID - 1] = _Spawner.springScriptArray[ProtStructData.StructID - 1].GetComponent<springs>();
-                SpringArray[ProtStructData.StructID - 1].balls.Add(thisItem);
-
-                _Spawner.ChainLengthArray[ProtStructData.StructID - 1]++;
-                thisItem.transform.parent = _Spawner.ProteinStructArray[ProtStructData.StructID - 1].transform;
-
-                //Calculate the relative distances between objects
-                SpringArray[ProtStructData.StructID - 1].natural_length.Clear();
-
-                for (int i = 0; i < SpringArray[ProtStructData.StructID - 1].balls.Count; ++i)
+                if (_Spawner.ChainLengthArray[ProtStructData.StructID - 1] <= 4)
                 {
-                    for (int j = i + 1; j < SpringArray[ProtStructData.StructID - 1].balls.Count; ++j)
-                    {
-                        Rigidbody2D rb1 = SpringArray[ProtStructData.StructID - 1].balls[i].GetComponent<Rigidbody2D>();
-                        Rigidbody2D rb2 = SpringArray[ProtStructData.StructID - 1].balls[j].GetComponent<Rigidbody2D>();
-                        float d = (rb1.transform.position - rb2.transform.position).magnitude;
-                        SpringArray[ProtStructData.StructID - 1].natural_length.Add(d);
-                    }
-                }
 
-                collided = true;
+                    print("Second Loop, Attacher, ProtStructID: " + ProtStructData.StructID);
+
+                    SpringArray[ProtStructData.StructID - 1] = _Spawner.springScriptArray[ProtStructData.StructID - 1].GetComponent<springs>();
+                    SpringArray[ProtStructData.StructID - 1].balls.Add(thisItem);
+
+                    _Spawner.ChainLengthArray[ProtStructData.StructID - 1]++;
+                    thisItem.transform.parent = _Spawner.ProteinStructArray[ProtStructData.StructID - 1].transform;
+
+                    //Calculate the relative distances between objects
+                    SpringArray[ProtStructData.StructID - 1].natural_length.Clear();
+
+                    for (int i = 0; i < SpringArray[ProtStructData.StructID - 1].balls.Count; ++i)
+                    {
+                        for (int j = i + 1; j < SpringArray[ProtStructData.StructID - 1].balls.Count; ++j)
+                        {
+                            Rigidbody2D rb1 = SpringArray[ProtStructData.StructID - 1].balls[i].GetComponent<Rigidbody2D>();
+                            Rigidbody2D rb2 = SpringArray[ProtStructData.StructID - 1].balls[j].GetComponent<Rigidbody2D>();
+                            float d = (rb1.transform.position - rb2.transform.position).magnitude;
+                            SpringArray[ProtStructData.StructID - 1].natural_length.Add(d);
+                        }
+                    }
+
+                    collided = true;
+                }
             }
   
         }
